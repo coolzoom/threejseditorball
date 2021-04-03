@@ -1,3 +1,6 @@
+//https://stackoverflow.com/questions/59726140/how-to-use-orbitcontrols-in-three-js-editor-project
+//https://github.com/mrdoob/three.js/blob/89438bb39cde275ed1024fdb527b3ed75bdae68b/examples/jsm/controls/OrbitControls.js
+import { OrbitControls } from './OrbitControls.js';
 var APP = {
 
 	Player: function () {
@@ -5,10 +8,10 @@ var APP = {
 		var renderer = new THREE.WebGLRenderer( { antialias: true } );
 		renderer.setPixelRatio( window.devicePixelRatio ); // TODO: Use player.setPixelRatio()
 		renderer.outputEncoding = THREE.sRGBEncoding;
-
+      
 		var loader = new THREE.ObjectLoader();
 		var camera, scene;
-
+         
 		var vrButton = VRButton.createButton( renderer ); // eslint-disable-line no-undef
 
 		var events = {};
@@ -106,6 +109,8 @@ var APP = {
 			camera = value;
 			camera.aspect = this.width / this.height;
 			camera.updateProjectionMatrix();
+			var controls = new OrbitControls( camera, renderer.domElement );
+			controls.update();
 
 		};
 
